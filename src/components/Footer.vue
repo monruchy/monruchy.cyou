@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue';
 const commit = ref(null);
 
 onMounted(async () => {
-  await fetch('https://api.github.com/repos/lostf1sh/website/commits')
+  await fetch('https://api.github.com/repos/monruchy/summary/commits')
     .then(response => response.json())
     .then(data => {
       commit.value = data[0]
@@ -22,6 +22,6 @@ onMounted(async () => {
       <div v-if="commit">{{ commit.sha.slice(0, 7) }} — {{ commit.commit.message }}</div>
       <div v-else>latest commit could not be retrieved.</div>
     </div>
-    <a href="https://github.com/lostf1sh/website" target="_blank" class="whitespace-nowrap underline">thx ❤️</a>
+    <a href="https://github.com/lostf1sh/website" target="_blank" class="whitespace-nowrap underline">i ❤️ ⛩</a>
   </div>
 </template>

@@ -145,7 +145,7 @@ const connectWebSocket = () => {
   ws.value.onopen = () => {
     ws.value.send(JSON.stringify({
       op: 2,
-      d: { subscribe_to_id: '225933101958692864' }
+      d: { subscribe_to_id: '1035157898638139435' }
     }));
   };
 
@@ -204,7 +204,7 @@ onUnmounted(() => {
     monruchy.cyou
   </div>
   <div>
-    mammon, 16 years-old. chef, professional table tennis player. hyprland enjoyer. 
+    mammon, 16 years-old. chef, professional futsal player. hyprland enjoyer. 
     sports, music, chemistry. contact : blerdatly@gmail.com
   </div>
   <div class="flex gap-2 items-center text-sm text-catppuccin-green">
