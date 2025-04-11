@@ -145,7 +145,7 @@ const connectWebSocket = () => {
   ws.value.onopen = () => {
     ws.value.send(JSON.stringify({
       op: 2,
-      d: { subscribe_to_id: '225933101958692864' }
+      d: { subscribe_to_id: '1035157898638139435' }
     }));
   };
 
