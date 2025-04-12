@@ -204,7 +204,7 @@ onUnmounted(() => {
     monruchy.cyou
   </div>
   <div>
-    mammon, 16 years-old. chef, futsal player. hyprland enjoyer. 
+    A-M0N, 16 years-old. ,futball player. hyprland enjoyer. 
     sports, music, chemistry. contact : blerdatly@gmail.com
   </div>
   <div class="flex gap-2 items-center text-sm text-catppuccin-green">
