@@ -204,7 +204,7 @@ onUnmounted(() => {
     monruchy.cyou
   </div>
   <div>
-    M0N, 16 years-old. ,self-taught developer, hyprland enjoyer. 
+    M0N, 16 years-old. self-taught developer, hyprland enjoyer. 
     sports, music, chemistry, math. contact : blerdatly@gmail.com
   </div>
   <div class="flex gap-2 items-center text-sm text-catppuccin-green">
