@@ -204,8 +204,8 @@ onUnmounted(() => {
     monruchy.cyou
   </div>
   <div>
-    A-M0N, 16 years-old. ,futball player. hyprland enjoyer. 
-    sports, music, chemistry. contact : blerdatly@gmail.com
+    M0N, 16 years-old. ,self-taught developer, hyprland enjoyer. 
+    sports, music, chemistry, math. contact : blerdatly@gmail.com
   </div>
   <div class="flex gap-2 items-center text-sm text-catppuccin-green">
     <font-awesome-icon :icon="['fab', 'spotify']" class="text-xl w-5 h-5" />
