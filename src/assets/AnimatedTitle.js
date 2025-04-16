@@ -1,6 +1,6 @@
 var rev = "fwd";
 function titlebar(val){
-    var msg  = "posttuaglom.fun ~ 👾";
+    var msg  = "monruchy.cyou ~ 👾";
     var res = " ";
     var speed = 250;
     var pos = val;
