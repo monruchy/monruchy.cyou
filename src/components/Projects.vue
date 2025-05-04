@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-const projects = ['future', 'summary', 'donut', 'ltc-balance-tracking']
+const projects = ['future', 'summary', 'donut', 'ltc-balance-tracking', 'winactivate', 'Aternos']
 const repos = ref([]);
 
 onMounted(async () => {
