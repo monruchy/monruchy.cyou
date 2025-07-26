@@ -205,7 +205,7 @@ onUnmounted(() => {
   </div>
   <div>
     just self-taught developer. 
-    sports, music, chemistry, math. contact : blerdatly@gmail.com
+    sports, music, chemistry, math. ✨
   </div>
   <div class="flex gap-2 items-center text-sm text-catppuccin-green">
     <font-awesome-icon :icon="['fab', 'spotify']" class="text-xl w-5 h-5" />
