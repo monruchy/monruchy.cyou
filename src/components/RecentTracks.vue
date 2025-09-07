@@ -15,6 +15,9 @@
           <p class="font-bold mb-1 text-catppuccin-milk truncate" :title="track.name">{{ track.name }}</p>
           <p class="text-catppuccin-gray truncate" :title="track.artist['#text']">{{ track.artist['#text'] }}</p>
           <p v-if="track['@attr']?.nowplaying" class="text-catppuccin-green">Now Playing</p>
+          <span v-else class="text-xs text-catppuccin-gray block mt-1">
+            {{ formatDate(track.date?.uts) }}
+          </span>
         </div>
       </div>
     </div>
@@ -59,6 +62,20 @@ export default {
       }
     });
 
+    // เพิ่มฟังก์ชันแปลง timestamp เป็นวันที่และเวลา
+    const formatDate = (uts) => {
+      if (!uts) return '';
+      const date = new Date(uts * 1000);
+      // ตัวอย่าง: Sep 7, 07:22 AM
+      return date.toLocaleString('en-US', {
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+    };
+
     const fetchTracks = async () => {
       try {
         loading.value = true;
@@ -94,7 +111,8 @@ export default {
       loading,
       error,
       updateCounter,
-      goToTrack
+      goToTrack,
+      formatDate // export ฟังก์ชันนี้
     };
   }
 };

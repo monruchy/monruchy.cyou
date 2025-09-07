@@ -9,6 +9,28 @@ const vscodeActivity = ref(null);
 const ws = ref(null);
 const languageColors = ref({});
 
+// Weather state
+const weather = ref(null);
+const weatherLoading = ref(true);
+const weatherError = ref(null);
+
+const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+
+const fetchWeather = async () => {
+  weatherLoading.value = true;
+  weatherError.value = null;
+  try {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=Saraburi,TH&units=metric&appid=${OPENWEATHER_API_KEY}&lang=th`
+    );
+    weather.value = response.data;
+  } catch (err) {
+    weatherError.value = 'ไม่สามารถโหลดข้อมูลสภาพอากาศ';
+  } finally {
+    weatherLoading.value = false;
+  }
+};
+
 const fetchLanguageColors = async () => {
   try {
     const response = await axios.get('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json');
@@ -190,6 +212,7 @@ const connectWebSocket = () => {
 onMounted(() => {
   connectWebSocket();
   fetchLanguageColors();
+  fetchWeather();
 });
 
 onUnmounted(() => {
@@ -206,6 +229,22 @@ onUnmounted(() => {
   <div>
     just self-taught developer. 
     sports, music, chemistry, math. ✨
+  </div>
+  <div class="flex gap-2 items-center text-sm mt-2 text-catppuccin-blue">
+    <template v-if="weatherLoading">
+      <span>กำลังโหลดสภาพอากาศ...</span>
+    </template>
+    <template v-else-if="weatherError">
+      <span>{{ weatherError }}</span>
+    </template>
+    <template v-else-if="weather">
+      <img :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`" alt="weather icon" class="w-6 h-6" />
+      <span>
+        {{ weather.weather[0].description }},
+        {{ Math.round(weather.main.temp) }}°C
+        (รู้สึกเหมือน {{ Math.round(weather.main.feels_like) }}°C)
+      </span>
+    </template>
   </div>
   <div class="flex gap-2 items-center text-sm text-catppuccin-green">
     <font-awesome-icon :icon="['fab', 'spotify']" class="text-xl w-5 h-5" />
@@ -234,15 +273,57 @@ onUnmounted(() => {
       i'm currently editing <strong>{{ vscodeStatus.details }}</strong> in Workspace: <strong>{{ vscodeStatus.state }}</strong>.
     </div>
   </div>
-  <div class="flex gap-10 mt-5 text-xl">
-    <a href="https://github.com/monruchy/" target="_blank" class="flex items-center justify-center">
-      <font-awesome-icon :icon="['fab', 'github']" class="w-5 h-5" />
+  <div class="flex gap-6 mt-5 text-xl">
+    <a
+      href="https://github.com/monruchy/"
+      target="_blank"
+      class="flex items-center justify-center w-12 h-12 rounded-xl border border-catppuccin-gray bg-opacity-10 transition-colors duration-200 group"
+      style="background-color: rgba(255,255,255,0.01);"
+    >
+      <font-awesome-icon
+        :icon="['fab', 'github']"
+        class="w-6 h-6 text-catppuccin-gray transition-colors duration-200 group-hover:text-[#fff]"
+      />
     </a>
-    <a href="https://www.instagram.com/monruchy" target="_blank" class="flex items-center justify-center">
-      <font-awesome-icon :icon="['fab', 'instagram']" class="w-5 h-5" />
+    <a
+      href="https://www.instagram.com/monruchy"
+      target="_blank"
+      class="flex items-center justify-center w-12 h-12 rounded-xl border border-catppuccin-gray bg-opacity-10 transition-colors duration-200 group"
+      style="background-color: rgba(255,255,255,0.01);"
+    >
+      <font-awesome-icon
+        :icon="['fab', 'instagram']"
+        class="w-6 h-6 text-catppuccin-gray transition-colors duration-200 group-hover:text-[#E4405F]"
+      />
     </a>
-    <a href="https://discord.com/user/225933101958692864" target="_blank" class="flex items-center justify-center">
-      <font-awesome-icon :icon="['fab', 'discord']" class="w-5 h-5" />
+    <a
+      href="https://discord.com/user/225933101958692864"
+      target="_blank"
+      class="flex items-center justify-center w-12 h-12 rounded-xl border border-catppuccin-gray bg-opacity-10 transition-colors duration-200 group"
+      style="background-color: rgba(255,255,255,0.01);"
+    >
+      <font-awesome-icon
+        :icon="['fab', 'discord']"
+        class="w-6 h-6 text-catppuccin-gray transition-colors duration-200 group-hover:text-[#5865F2]"
+      />
+    </a>
+    <a
+      href="https://open.spotify.com/user/313rakwl6izaerayob7trim7cuma"
+      target="_blank"
+      class="flex items-center justify-center w-12 h-12 rounded-xl border border-catppuccin-gray bg-opacity-10 transition-colors duration-200 group"
+      style="background-color: rgba(255,255,255,0.01);"
+    >
+      <font-awesome-icon
+        :icon="['fab', 'spotify']"
+        class="w-6 h-6 text-catppuccin-gray transition-colors duration-200 group-hover:text-[#1DB954]"
+      />
     </a>
   </div>
 </template>
+
+<style scoped>
+a.group:hover {
+  border-color: #fff;
+  background-color: rgba(255,255,255,0.04);
+}
+</style>
