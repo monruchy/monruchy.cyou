@@ -35,8 +35,8 @@ onMounted(async () => {
       <div :class="['font-bold', 'text-lg', repo.archived ? 'line-through' : '']">{{ repo.name }}</div>
       <div>{{ repo.description }}</div>
       <div class="flex mt-2 gap-5">
-        <div>
-          <font-awesome-icon :icon="['fas', 'star']" />
+        <div class="flex items-center gap-1">
+          <font-awesome-icon :icon="['fas', 'star']" style="color: #f9e076;" />
           {{ repo.stargazers_count }}
         </div>
         <div>

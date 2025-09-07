@@ -241,8 +241,8 @@ onUnmounted(() => {
       <img :src="`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`" alt="weather icon" class="w-6 h-6" />
       <span>
         {{ weather.weather[0].description }},
-        {{ Math.round(weather.main.temp) }}°C
-        (รู้สึกเหมือน {{ Math.round(weather.main.feels_like) }}°C)
+        <span class="font-bold text-catppuccin-green text-lg">{{ Math.round(weather.main.temp) }}°C</span>
+        (รู้สึกเหมือน <span class="font-bold text-catppuccin-yellow text-lg">{{ Math.round(weather.main.feels_like) }}°C</span>)
       </span>
     </template>
   </div>
@@ -250,18 +250,33 @@ onUnmounted(() => {
     <font-awesome-icon :icon="['fab', 'spotify']" class="text-xl w-5 h-5" />
     <div v-if="spotify">
       i'm currently listening to 
-      <a :href="`https://open.spotify.com/track/${spotify.track_id}`" target="_blank" class="underline">
-        {{ spotify.song }} - {{ spotify.artist }}
+      <a
+        :href="`https://open.spotify.com/track/${spotify.track_id}`"
+        target="_blank"
+        class="underline"
+      >
+        <span class="text-catppuccin-green">{{ spotify.song }}</span> - {{ spotify.artist }}
       </a>.
     </div>
     <div v-else>
       i'm not listening to anything right now.
     </div>
   </div>
-  <div class="flex gap-2 items-center text-sm mt-2" :class="discordStatusColor">
+  <div class="flex gap-2 items-center text-sm mt-2">
     <font-awesome-icon :icon="['fab', 'discord']" class="text-xl w-5 h-5" />
     <div>
-      i'm currently {{ discordStatus }} on discord.
+      i'm currently
+      <span
+        :class="{
+          'text-catppuccin-green': discordStatus === 'online',
+          'text-catppuccin-yellow': discordStatus === 'idle',
+          'text-catppuccin-red': discordStatus === 'do not disturb',
+          'text-catppuccin-gray': discordStatus === 'offline'
+        }"
+      >
+        {{ discordStatus }}
+      </span>
+      on discord.
     </div>
   </div>
   <div v-if="vscodeActivity" class="flex gap-2 items-center text-sm mt-2" :style="currentLanguageColor">
