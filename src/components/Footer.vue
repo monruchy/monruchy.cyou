@@ -24,4 +24,5 @@ onMounted(async () => {
     </div>
     <a href="https://github.com/lostf1sh/website" target="_blank" class="whitespace-nowrap underline ">gimme a ⭐️</a>
   </div>
+
 </template>

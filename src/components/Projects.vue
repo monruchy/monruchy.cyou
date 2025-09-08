@@ -37,6 +37,7 @@ onMounted(async () => {
       <div class="flex mt-2 gap-5">
         <div class="flex items-center gap-1">
           <font-awesome-icon :icon="['fas', 'star']" style="color: #f9e076;" />
+          <!-- <font-awesome-icon :icon="['fas', 'star']"/> -->
           {{ repo.stargazers_count }}
         </div>
         <div>
