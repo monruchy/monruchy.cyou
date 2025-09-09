@@ -223,7 +223,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="font-sans font-black text-5xl">
+  <div
+    class="font-sans font-black text-5xl rainbow-text"
+  >
     monruchy.cyou
   </div>
   <div>
@@ -340,5 +342,31 @@ onUnmounted(() => {
 a.group:hover {
   border-color: #fff;
   background-color: rgba(255,255,255,0.04);
+}
+
+.rainbow-text {
+  background: linear-gradient(
+    270deg,
+    #ff0080,
+    #ff8c00,
+    #40e0d0,
+    #8a2be2,
+    #ff0080
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-move 4s linear infinite;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+@keyframes rainbow-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
+  }
 }
 </style>
