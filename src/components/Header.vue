@@ -349,24 +349,26 @@ a.group:hover {
     270deg,
     #ff0080,
     #ff8c00,
+    #ffe600,
     #40e0d0,
+    #00ffea,
     #8a2be2,
     #ff0080
   );
-  background-size: 400% 400%;
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-move 4s linear infinite;
+  animation: rainbow-move 6s ease-in-out infinite alternate;
   background-clip: text;
   text-fill-color: transparent;
 }
 
 @keyframes rainbow-move {
   0% {
-    background-position: 0% 50%;
+    background-position: 100% 50%;
   }
   100% {
-    background-position: -200% 50%;
+    background-position: 0% 50%;
   }
 }
 </style>
