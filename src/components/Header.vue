@@ -21,11 +21,11 @@ const fetchWeather = async () => {
   weatherError.value = null;
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=Saraburi,TH&units=metric&appid=${OPENWEATHER_API_KEY}&lang=th`
+      `https://api.openweathermap.org/data/2.5/weather?q=Saraburi,TH&units=metric&appid=${OPENWEATHER_API_KEY}&lang=en`
     );
     weather.value = response.data;
   } catch (err) {
-    weatherError.value = 'ไม่สามารถโหลดข้อมูลสภาพอากาศ';
+    weatherError.value = 'Unable to load weather data';
   } finally {
     weatherLoading.value = false;
   }
@@ -228,13 +228,12 @@ onUnmounted(() => {
   >
     monruchy.cyou
   </div>
-  <div>
-    just self-taught developer. 
-    sports, music, chemistry, math. ✨
+  <div class="text-catppuccin-gray text-lg font-mono tracking-wide mb-2">
+    passionate about code, music, sports, chemistry, and math.
   </div>
   <div class="flex gap-2 items-center text-sm mt-2 text-catppuccin-blue">
     <template v-if="weatherLoading">
-      <span>กำลังโหลดสภาพอากาศ...</span>
+      <span>Loading weather...</span>
     </template>
     <template v-else-if="weatherError">
       <span>{{ weatherError }}</span>
@@ -244,7 +243,7 @@ onUnmounted(() => {
       <span>
         {{ weather.weather[0].description }},
         <span class="font-bold text-catppuccin-green text-lg">{{ Math.round(weather.main.temp) }}°C</span>
-        (รู้สึกเหมือน <span class="font-bold text-catppuccin-yellow text-lg">{{ Math.round(weather.main.feels_like) }}°C</span>)
+        (feels like <span class="font-bold text-catppuccin-yellow text-lg">{{ Math.round(weather.main.feels_like) }}°C</span>)
       </span>
     </template>
   </div>
