@@ -177,7 +177,9 @@ const connectWebSocket = () => {
       const data = message.d;
       
       spotify.value = data.spotify;
-      vscodeActivity.value = data.activities.find(activity => activity.name === "Visual Studio Code") || null;
+      vscodeActivity.value = data.activities.find(activity =>
+        ["Visual Studio Code", "Code", "VSCodium"].includes(activity.name)
+      ) || null;
 
       switch (data.discord_status) {
         case 'online':
@@ -280,15 +282,19 @@ onUnmounted(() => {
       on discord.
     </div>
   </div>
-  <div v-if="vscodeActivity" class="flex gap-2 items-center text-sm mt-2" :style="currentLanguageColor">
-    <font-awesome-icon :icon="['fas', 'code']" class="text-xl w-5 h-5" />
-    <div v-if="typeof vscodeStatus === 'string'">
-      i'm currently {{ vscodeStatus }} in VSCode.
-    </div>
-    <div v-else-if="vscodeStatus">
-      i'm currently editing <strong>{{ vscodeStatus.details }}</strong> in Workspace: <strong>{{ vscodeStatus.state }}</strong>.
-    </div>
+  <div v-if="vscodeActivity" class="flex gap-2 items-center text-sm mt-2" 
+     :style="{ color: currentLanguageColor }">
+  <font-awesome-icon :icon="['fas', 'code']" class="text-xl w-5 h-5" />
+  <div v-if="typeof vscodeStatus === 'string'">
+    i'm currently {{ vscodeStatus }} in VSCode.
   </div>
+  <div v-else-if="vscodeStatus">
+    i'm currently editing 
+    <strong :style="{ color: '#FFD700' }">{{ vscodeStatus.details }}</strong> 
+    in Workspace: <strong :style="{ color: '#00CED1' }">{{ vscodeStatus.state }}</strong>.
+  </div>
+</div>
+
   <div class="flex gap-6 mt-5 text-xl">
     <a
       href="https://github.com/monruchy/"
